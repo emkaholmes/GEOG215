@@ -1,0 +1,83 @@
+---
+title: 'Assignment #2'
+author: "Emma Holmes"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output: 
+  html_document:
+    theme: "cosmo"
+    highlight: "zenburn"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+cavac <- read.csv("CA_kind_0015_Sch_Counts_PBE.csv") 
+#Read in the data for vaccinations in California between 2000 and 2015
+#I set my working directory to be the same as where the cvs file is located
+```
+
+### Data Summary
+
+The number of schools/rows in the table: `r nrow(cavac)`  
+The number of columns in the table: `r ncol(cavac)` 
+
+### Aggregating Data
+
+```{r}
+names(cavac) #This will print all of the column names on the screen
+```
+
+```{r}
+#Sum the values in each column to get the state value of PBE and ENR for each year
+CA.sums <- colSums(cavac[,6:37], na.rm = TRUE)
+#Print column sums to screen
+CA.sums
+
+#Find the Percent of Kindergartners who have a Personal Belief Exception
+CA.pbe.00.15 <- 100 * CA.sums[17:32] / CA.sums[1:16]
+#Making the new names for CA.pbe.00.15 when it's printed so it's easier to differentiate from CA.sums
+paste0("PBER", 2000:2015)
+#Officially changing the names for CA.pbe.00.15
+names(CA.pbe.00.15) <- paste0("PBER", 2000:2015)
+#Print the Percent of Kindergartners with a PBE to screen
+CA.pbe.00.15
+
+#Calculate the one-year change in CA.pbe.00.15
+#Example for how to find the one-year change in 2001
+CA.pbe.00.15[1] #year 2000
+CA.pbe.00.15[2] #year 2001
+CA.pbe.00.15[2] - CA.pbe.00.15[1] #year 2001 - year 2000
+#Actually finding the one-year change for years between 2001 and 2015
+CA.pbe.ch.01.15 <- CA.pbe.00.15[2:16] - CA.pbe.00.15[1:15]
+#Change the names like before
+names(CA.pbe.ch.01.15) <- paste("PBERCH", 2001:2015, sep="")
+#Print the one-year change
+CA.pbe.ch.01.15
+```
+
+### Plots
+
+```{r}
+#A plot of geographic locations of the schools in California
+#Load in tidyverse package to use ggplot
+library(tidyverse)
+#Make the plot using the coordinates provided
+ggplot(cavac)+
+  #State the x and y axis
+  geom_point(aes(x=lon, y=lat))+
+  #Add a title
+  ggtitle("Geographic Locations of the Schools in California")+
+  #Add axis labels
+  labs(x="Longitude", y="Latitude")
+
+#Make a line plot using the state-level data
+ggplot()+
+  #State the x and y axis, make the color of the line red, and the width of the line 2 
+  geom_line(aes(x=2000:2015, y=CA.pbe.00.15), color="red", linewidth=2)+
+  #Add a title to the plot
+  ggtitle("PBEs in California, 2000-2015")+
+  #Add axis labels to the plot
+  labs(x="Year", y="PBE (%)")
+```

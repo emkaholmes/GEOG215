@@ -1,0 +1,277 @@
+---
+title: "Holmes_GEOG215_Final"
+author: "Emma Holmes"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output: 
+  html_document:
+    theme: "cosmo"
+    highlight: "textmate"
+---
+
+```{r setup, include = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(sf)
+library(tmap)
+library(knitr)
+library(kableExtra)
+library(sp)
+library(spdep)
+```
+
+## Introduction
+I analyzed trees in London, UK by comparing the location of the trees that are in the different boroughs of Greater London. This is useful information for a variety of people to know if there is a lack of trees in any given area. Then with this information there can be an effort to plant more trees in places with less of them. Trees are important in an area's quality of life as they filter the nearby air and water, including removing carbon, and act as cooling agents. 
+
+## Data Preparation
+
+The dataset of tree locations was found on the London Datastore (https://data.london.gov.uk/dataset/local-authority-maintained-trees) and was collected by the Greater London Authory. 
+
+The shapefile of the boroughs in Greater London was found on the European Commission's website (https://data.europa.eu/data/datasets/statistical-gis-boundary-files-for-london/?locale=en).
+
+To prepare my data for the analysis, I first added geometry to the tree locations using the longitude and latitude that had been provided. Then I transformed the CRS to be 27700, which is the local CRS for London that the borough data is already in.
+
+```{r, include = FALSE}
+tree.loc <- read.csv("Data/Borough_tree_list_2021.csv")
+
+boroughs <- st_read("Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.shp")
+
+```
+
+```{r, warning = FALSE}
+
+## Make trees numeric
+num.trees <- tree.loc %>%
+  mutate_at(12:13, as.numeric)
+
+## One point got messed up and will skew the data (51.585, 20180214)
+## Remove this point from the data
+cl.trees <- num.trees %>%
+  filter(!row_number() %in% c("764094"))
+
+## Get rid of NAs and blanks in the data
+cn.trees <- cl.trees[,c("lon","lat","borough")] %>% 
+  na_if("") %>% # recode empty strings "" by NAs
+  na.omit() # remove NAs
+
+## Make trees spatial
+trees_sf <- cn.trees %>%
+  st_as_sf(coords = c("lon","lat"), remove = FALSE)
+
+## Add CRS
+st_crs(trees_sf) = 4326
+
+## Transform Tree Location CRS to OSGB36 (ESPG = 27700)
+trees_sf = st_transform(trees_sf, 27700)
+
+## Make shapefile valid
+boroughs <- st_make_valid(boroughs)
+
+## Remove extra columns in boroughs
+cl.boroughs <- boroughs %>%
+  select(!c("HECTARES","NONLD_AREA","ONS_INNER","SUB_2009","SUB_2006"))
+
+```
+
+## Analysis
+
+### Data Description and Summary
+
+Looking at the table below, it is already apparent that there is a large range between the number of trees that are in each borough as the maximum is 77,589 and the minimum is 252. The median is also smaller than the mean which tells me that the data is skewed to the right, with the majority of the boroughs having a smaller amount of trees.
+
+```{r, include = FALSE}
+## Create a data frame for the table
+
+#Sum of the trees per borough
+tree.per.borough <- trees_sf %>% 
+  count(borough)
+
+#Total amount of trees in London
+cal.trees <- sum(tree.per.borough$n)
+
+#Mean amount of trees per borough
+cal.trees[2] <- mean(tree.per.borough$n)
+
+#Median amount of trees per borough
+cal.trees[3] <- median(tree.per.borough$n)
+
+#Minimum amount of trees per borough
+cal.trees[4] <- min(tree.per.borough$n)
+
+#Maximum amount of trees per borough
+cal.trees[5] <- max(tree.per.borough$n)
+
+#Add names
+names(cal.trees)[1:5] <- c("Sum", "Mean", "Median", "Minimum", "Maximum")
+
+# Convert to dataframe
+tree.bor.dat <- data.frame("Metric" = names(cal.trees), 
+                       "Value" = cal.trees)
+
+## Create the table
+```
+
+```{r printtable, echo = FALSE, warning = FALSE}
+kable(tree.bor.dat, 
+      digits = 3,
+      format.args = list(big.mark = ",",
+                         scientific = FALSE,
+                         drop0trailing = TRUE),
+      caption = "Statistics of Trees Per Borough") %>% 
+  kable_styling(bootstrap_options = c("striped", 
+                                      "hover", 
+                                      "condensed", 
+                                      "responsive"), 
+                full_width = F)
+```
+
+### Geographic Distribution and Spatial Clustering
+
+##### Barchart
+This barchart gives a visualization of the amount of trees in each of the boroughs with two of the boroughs having over 75,000 trees, but the majority of the boroughs fall below having 40,000 trees. It reiterates the how the data is skewed towards lower amount of trees in each borough.
+
+```{r barplot, echo = FALSE, warning = FALSE, fig.width = 9, fig.height = 6}
+## Create a barchart of the number of trees in each borough
+
+# Get table information from sp data
+t.tree.per.borough <- st_drop_geometry(tree.per.borough)
+
+# Sort data by Cases (high to low)
+t.tree.per.borough <- t.tree.per.borough[order(t.tree.per.borough$n, decreasing = TRUE), ]
+
+## Create ggplot
+ggplot(t.tree.per.borough,
+       aes(x = borough,
+           y = n)) + 
+  geom_bar(stat = "identity") + 
+  xlab("Borough") +
+  ylab("Number of Trees") +
+  coord_flip() +
+  theme_minimal() +
+  ggtitle("Trees per Borough") +
+  scale_y_continuous(breaks=c(5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000))
+
+```
+
+##### Choropleth Map
+
+The choropleth shows that there are more trees reported in the northern part of Greater London and less trees reported in the southern part of Greater London.
+
+```{r map1, echo = FALSE, warning = FALSE, fig.width = 9, fig.height = 6}
+## Create a map plotting the trees onto the heat map with the boroughs
+
+# Spatial join the trees per boroughs and the boroughs
+# Confirm CRS
+st_crs(cl.boroughs) <- 27700
+st_crs(tree.per.borough) <- 27700
+
+tr.bo_sf <- st_join(cl.boroughs,
+                   tree.per.borough,
+                   join = st_intersects)
+
+# Make the choropleth interactive
+tmap_mode("view")
+
+#Plot the choropleth map
+tm_shape(tr.bo_sf)+
+  tm_polygons("n",
+              style = "jenks", 
+              palette = "Greens",
+              lwd = 0.25,
+              border.col = "black",
+              border.alpha = 0.5,
+              title = "Number of Trees Per Borough")
+
+```
+
+##### Moran's I
+
+Moran's I is 0.049. The p-value is 0.00175.
+
+```{r}
+## Use Moran's I to analyze whether the data is more clustered or dispersed.
+
+# Create Queen case neighbors
+tr.bo_queen <- poly2nb(tr.bo_sf, 
+                       queen = TRUE)
+
+# Convert neighbors to weight matrix
+tr.bo_weights <- nb2listw(tr.bo_queen, 
+                          style = "B",         # B is binary (1,0)
+                          zero.policy = TRUE)  # zero.policy allows for observations with NO neighbors 
+
+# Moran's I
+tr.bo.moran <- moran.test(tr.bo_sf$n, # The column in your sp data
+                             tr.bo_weights, # Weights object
+                             zero.policy = TRUE, # Allows for observations with NO neighbors
+                             randomisation = TRUE) # Compares to randomized NULL data
+
+# Print Moran's I
+tr.bo.moran
+
+```
+
+##### Map of Local Indicator of Spatial Association
+
+The LISA Map shows one cluster with high values and the neighbors also having high values in the north of Greater London, and a smaller area with low values where neighbors also had low values.
+
+The summary report of the LISA states that there are a couple areas of low values surrounded by high valued neighbors and high values surrounded by low value neighbors, but the map does not show these areas so they are not strong enough to be relevant.
+
+```{r map2, echo = FALSE, warning = FALSE, fig.width = 9, fig.height = 6}
+## Use LISA to analyze the clustering of trees throughout London
+
+# LISA -- Local Moran's I
+tr.bo.lisa <- localmoran(tr.bo_sf$n, # The column in your sp data 
+                         tr.bo_weights, # Weights object
+                         zero.policy = TRUE) %>% # Best to keep TRUE for LISA
+  as.data.frame() # Make result into data frame
+
+# Scale the input data to deviation from mean
+cDV <- tr.bo_sf$n - mean(tr.bo_sf$n) 
+
+# Get spatial lag (neighbors) values for each observation
+lagDV <- lag.listw(tr.bo_weights, tr.bo_sf$n)
+
+# Scale the lag values to deviation from mean
+clagDV <- lagDV - mean(lagDV, na.rm = TRUE)
+
+# Add holder column with all 0s
+tr.bo.lisa$Cat <- rep("0", nrow(tr.bo.lisa))
+
+# Add a label based on the values
+tr.bo.lisa$Cat[which(cDV > 0 & clagDV > 0 & tr.bo.lisa[,5] < 0.05)] <- "HH" 
+tr.bo.lisa$Cat[which(cDV < 0 & clagDV < 0 & tr.bo.lisa[,5] < 0.05)] <- "LL"      
+tr.bo.lisa$Cat[which(cDV < 0 & clagDV > 0 & tr.bo.lisa[,5] < 0.05)] <- "LH"
+tr.bo.lisa$Cat[which(cDV > 0 & clagDV < 0 & tr.bo.lisa[,5] < 0.05)] <- "HL"
+
+# Quick summary of LISA output
+table(tr.bo.lisa$Cat)
+
+# Add LISA category column to the spatial data
+tr.bo_sf$LISACAT <- tr.bo.lisa$Cat
+
+# Plot the map
+tm_shape(tr.bo_sf) + 
+  tm_polygons("LISACAT", 
+              style = "cat", 
+              palette = c("grey", 
+                          "red", 
+                          "pink", 
+                          "lightblue", 
+                          "blue"), 
+              border.col = "Black", 
+              border.alpha = 0.25) +
+  tm_layout(legend.outside = TRUE)
+
+```
+
+### Interpretation
+
+Moran's I, 0.049, and the p-value, 0.00175, are both closer to 0 (rather than the Moran's I being closer to -1 or 1 and the p-value being closer to 0.5) so they both indicate that the data is random and that there is no consistent pattern of clustering or dispersing.
+
+The choropleth the LISA map show a cluster of a large amount of trees in the north of Greater London, while there is a lack of trees near the City of London. The cluster of low values at the City of London makes sense because it has less green space. Currently I do not know why there is a cluster of high values near Enfield or Waltham Forest (other than the name including Forest), but further research could be done to find out the reason behind this, perhaps these areas are more residential or have wealthier inhabitants.
+
+The primary limitation to this data that there is a lack of consistency among the data of tree locations provided. Many of the tree locations are from 2021, but some boroughs had not submitted updated numbers so they are from 2018 or 2015/2016.
+
+## Conclusion
+
+The data analyzed shows that there is not a pattern of clustering or dispersing of the total amount of tree locations in each borough. To me this shows that a few boroughs have more trees while others are lacking trees. Further research can be done on whether or not the lack of trees in these other boroughs has any affect on their quality of living, an example being whether the lack of trees increases the amount of heat felt in the summer.

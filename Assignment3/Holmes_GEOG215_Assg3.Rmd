@@ -1,0 +1,146 @@
+---
+title: 'Assignment #3'
+author: "Emma Holmes"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output: 
+  html_document:
+    theme: "cosmo"
+    highlight: "zenburn"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(sf)
+library(tmap)
+```
+
+### Download and Read Data
+
+```{r}
+wavac <- read_csv("WA_VACC_SCHDIST_2017.csv")
+```
+
+### Washington Data Summary
+
+```{r, include = FALSE}
+## Get number of rows
+wavac.r <- nrow(wavac)
+ 
+## Get number of columns
+wavac.c <- ncol(wavac)
+ 
+## Identify No Data values in Enrollment column
+wavac.nd <- which(is.na(wavac$ENR17))
+ 
+## Identify the number of No Data values (in Enrollment column)
+wavac.nd.length <- length(wavac.nd)
+ 
+## Get total kindergarten enrollment in 2017
+wavac.enr <- as.integer(sum(wavac[,3], na.rm = TRUE))
+ 
+## Get total number of kindergarteners up to date
+wavac.utd <- as.integer(sum(wavac[,4], na.rm = TRUE))
+ 
+## Calculate the percent of kindergarteners up to date
+wavac.utd.pct <- 100 * wavac.utd / wavac.enr
+
+## Round the data to one decimal place
+wavac.utd.pct <- round(wavac.utd.pct, digits = 1)
+```
+
+The Washington school district data file has `r wavac.r` rows (school districts) and `r wavac.c` columns. `r wavac.nd.length` school districts reported "No Data" for enrollment and vaccination data. Statewide in 2017, there were `r wavac.enr` kindergarteners, and `r wavac.utd` of these kindergarteners were up to date on vaccinations, for an up to date percent of `r wavac.utd.pct`.
+
+### Working with a shapefile
+
+### Question 1
+There are 8 files associated with the Washington School Districts shapefile, including the .shp file.
+
+```{r}
+# Read in WA school district shapefile
+wa.sd.sp <- st_read("wa_schdist_shapefile/WA_SCHDIST.shp")
+wa.sd.sp  # provides summary info about the object!
+ 
+# Check if valid geometry
+sum(st_is_valid(wa.sd.sp)) ## Equal to number of features?
+ 
+# Fix geometry (easiest attempt)
+wa.sd.sp <- st_make_valid(wa.sd.sp)
+
+# Plot the geometry to display the polygon
+plot(st_geometry(wa.sd.sp))
+```
+
+### Question 2
+There are 294 observations/features and 4 columns/variables in the Washington School Districts shapefile. In the Washington School Districts shapefile bounding box, the northernmost coordinate is (X, 5444545).
+
+```{r}
+## Extract the attributes (data.frame) from an sf object
+wa.sd.sp.att.data.only <- st_drop_geometry(wa.sd.sp)
+ 
+## Get info
+str(wa.sd.sp.att.data.only)
+ 
+## Extract a single column of (attribute) data
+sd.names <- wa.sd.sp$NAME
+sd.names[1:6]
+ 
+## Add a new column/variable to the sf object
+wa.sd.sp$NEWCOLUMN <- 1:294
+ 
+## Remove a column/variable from the sf object
+wa.sd.sp$NEWCOLUMN <- NULL
+ 
+## Query a column and subset
+## Which school districts have PK (pre-kindergarten)?
+pk.sds <- which(wa.sd.sp$LOGRADE == "PK")
+length(pk.sds) # How many?
+ 
+## Create a new spatial data layer containing ONLY the
+## school districts that have PK (subset the data)
+wa.sd.sp.pk <- wa.sd.sp[pk.sds,]
+ 
+## Plot the subset
+plot(st_geometry(wa.sd.sp.pk), col = "orange")
+ 
+```
+
+### Question 3
+185 Washington School Districts have pre-kindergarten.
+
+### Table Join and Map
+
+```{r}
+# Test if wa.sd.sp and wavac are a perfect match for a join
+all(wa.sd.sp$GEOID %in% wavac$GEOID)
+
+# Join vaccination data to spatial data
+wa.sd.sp <- merge(wa.sd.sp,      # Spatial Data layer
+                  wavac,         # Table Data layer
+                  by = "GEOID")  # Key field (this is both)
+
+## Calculate column with Percent Up to Date
+wa.sd.sp$UTDR17 <- 100 * wa.sd.sp$UTD17 / wa.sd.sp$ENR17
+ 
+## Create map
+tm_shape(wa.sd.sp) + 
+  tm_polygons("UTDR17", 
+              style = "jenks",
+              palette = "YlOrRd")
+```
+
+### Question 4
+In wavac, the data type of GEOID is numeric. And in wa.sd.sp the data type of GEOID is character. This information is found in the environment, before the data in the column it shows the data type as "num" in wavac and "chr" in wa.sd.sp.
+
+### Question 5
+The functions `all(1:10 %in% 1:10)` and `all(1:5 %in% 1:10)` both equal `TRUE` because the data that is found in 1:10 is also found in 1:10 and the data found in 1:5 is also in 1:10. However, `all(1:10 %in% 1:5)` equal `FALSE` because not all of the data in 1:10 is going to be in 1:5 as 1:10 is too big to fit into 1:5. There is 1,2,3,4,5 (1:5) in 1,2,3,4,5,6,7,8,9,10 (1:10) but not 1,2,3,4,5,6,7,8,9,10 (1:10) in 1,2,3,4,5 (1:5).
+
+### Question 6
+There are definitely chunks of districts that have the highest percent of vaccinations and these are closer to the southern border of Washington state. And the upper-right corner has a cluster of lighter oranges and yellows, signifiying a cluster of districts with lower vaccination rates, although there is one district in the middle with 90.4 to 100% vaccinated. I was surprised that Seattle was not darker as a large city, and central Seattle does have dark red districts, but to the immediate left of Seattle the districts have low rates of vaccination. It'd be interesting to view this map with large cities shown as points on it, to compare the rural and urban vaccinations (I don't know enough about Washington geography to know this off the top of my head, other than Seattle).
+
+
+
+
+
+
+

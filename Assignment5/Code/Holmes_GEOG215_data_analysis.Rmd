@@ -1,0 +1,210 @@
+---
+title: "Assignment #5, Initial Data Analysis"
+author: "Emma Holmes"
+date: 'Updated on `r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+   html_document:
+     theme: journal
+     highlight: textmate
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 999)
+```
+
+### Load Libraries
+
+```{r libraries, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(sf)
+library(tmap)
+library(knitr)
+library(kableExtra)
+```
+
+### Read Data
+
+```{r readdata, warning = FALSE, message = FALSE}
+# Read NC Zip Code COVID data
+nc.zip.covid <- st_read("../Data/NC_ZIP_COVID.shp", 
+                        quiet = TRUE)
+
+```
+
+### Descriptive Statistics
+
+```{r summarize, warning = FALSE, message = FALSE}
+# Create summary information holder
+# for Deaths per 1000 residents information
+summary.table <- tibble(Measure = c("Observations",
+                                    "Minimum",
+                                    "Maximum",
+                                    "Mean",
+                                    "Median",
+                                    "Standard Deviation"),
+                        `Cumulative Cases` = c(sum(!is.na(nc.zip.covid$CASES)),
+                                       min(nc.zip.covid$CASES, na.rm = TRUE),
+                                       max(nc.zip.covid$CASES, na.rm = TRUE),
+                                       mean(nc.zip.covid$CASES, na.rm = TRUE),
+                                       median(nc.zip.covid$CASES, na.rm = TRUE),
+                                       sd(nc.zip.covid$CASES, na.rm = TRUE)
+                                       ),
+                        `Case Rate` = c(sum(!is.na(nc.zip.covid$CASERATE)),
+                                      min(nc.zip.covid$CASERATE, na.rm = TRUE),
+                                      max(nc.zip.covid$CASERATE, na.rm = TRUE),
+                                      mean(nc.zip.covid$CASERATE, na.rm = TRUE),
+                                      median(nc.zip.covid$CASERATE, na.rm = TRUE),
+                                      sd(nc.zip.covid$CASERATE, na.rm = TRUE)
+                                      )
+                        )
+
+## Print nice version of the table
+kable(summary.table, 
+      digits = 1,
+      format.args = list(big.mark = ",",
+                         scientific = FALSE,
+                         drop0trailing = TRUE),
+      caption = "Summary of North Carolina COVID-19 Cumulative Cases and Case Rates (per 1,000 residents) by Zip Code") %>% 
+  kable_styling(bootstrap_options = c("striped", 
+                                      "hover", 
+                                      "condensed", 
+                                      "responsive"), 
+                full_width = F)
+
+
+```
+
+
+### Histogram 1
+
+```{r histogram1, warning = FALSE, message = FALSE, fig.width = 7, fig.height = 4}
+## plot histogram
+ggplot(nc.zip.covid, 
+       aes(x = CASERATE)) + 
+  geom_histogram(binwidth = 0.5) +
+  xlab("Cumulative COVID-19 cases per 1,000 People") +
+  ggtitle("Histogram of COVID-19 Case Rates") +
+  theme_minimal()
+
+```
+
+
+### Histogram 2
+
+```{r histogram2, warning = FALSE, message = FALSE, fig.width = 7, fig.height = 4}
+## plot histogram
+ggplot(nc.zip.covid, 
+       aes(x = CASERATE)) + 
+  geom_histogram(binwidth = 2) +
+  xlab("Cumulative COVID-19 cases per 1,000 People") +
+  ggtitle("Histogram of COVID-19 Case Rates") +
+  theme_minimal()
+
+```
+
+### Histogram 3
+
+```{r histogram3, warning = FALSE, message = FALSE, fig.width = 7, fig.height = 4}
+## plot histogram
+ggplot(nc.zip.covid, 
+       aes(x = CASES)) + 
+  geom_histogram(binwidth = 50) +
+  xlab("Cumulative COVID-19 cases") +
+  ggtitle("Histogram of COVID-19 Cases") +
+  theme_minimal()
+
+```
+
+### Choropleth Map 1
+
+```{r map1, warning = FALSE, message = FALSE, fig.width = 9, fig.height = 5}
+## Plot map
+tm_shape(nc.zip.covid) + 
+  tm_polygons("CASES", 
+              style = "jenks", 
+              palette = "YlOrRd",
+              lwd = 0.25,
+              border.col = "black",
+              border.alpha = 0.5,
+              title = "Cumulative COVID-19 Cases")
+```
+
+
+### Choropleth Map 2
+
+```{r map2, warning = FALSE, message = FALSE, fig.width = 9, fig.height = 5}
+## Plot map
+tm_shape(nc.zip.covid) + 
+  tm_polygons("CASERATE", 
+              style = "jenks", 
+              palette = "YlOrRd",
+              lwd = 0.25,
+              border.col = "black",
+              border.alpha = 0.5,
+              title = "Cumulative COVID-19 Case Rate (per 1,000 people)")
+```
+
+
+### Choropleth Map 3
+
+```{r map3, warning = FALSE, message = FALSE, fig.width = 9, fig.height = 5}
+## Plot map
+tm_shape(nc.zip.covid) + 
+  tm_polygons("CASERATE", 
+              style = "quantile", 
+              palette = "YlOrRd",
+              lwd = 0.25,
+              border.col = "black",
+              border.alpha = 0.5,
+              title = "Cumulative COVID-19 Case Rate (per 1,000 people)")
+```
+
+******
+
+##### Question 1. Write one sentence that **uses information from the table above** to describe the central tendency and dispersion of Cumulative COVID-19 Case Rates (per 1,000 people) by Zip Code. (1 sentence, using at least one measure of central tendency and one measure of dispersion)
+
+In North Carolina there was a mean of 16.5 Cumulative COVID-19 Case Rates per 1,000 people by zip codes with a standard deviation from this mean of 10.
+
+  
+******
+
+
+##### Question 2. What is the difference between Histogram 1 and Histogram 2?  Which one of these is more effective and why? (2-3 sentences)
+
+The bin size of Histogram 2 is much larger than that of Histogram 1. Because the data is so large, the larger bin size in Histogram 2 makes the data less accurate but easier to read, so it is more effective.
+
+  
+******
+
+
+##### Question 3. What are the differences between the data distributions found in Histogram 2 and Histogram 3? (2-3 sentences)
+
+The data distribution in Histogram 2 and Histogram 3 are both right-skewed, but Histogram 3 is much more skewed, with the data almost entirely leaning against the y-axis. While the data in Histogram 2 is not skewed as much and a bit more centered. This is because Histogram 2 uses the cumulative cases per 1,000 people, while Histogram 3 just uses the cumulative cases. 
+
+  
+******
+
+
+##### Question 4. Why is Choropleth Map 2 more appropriate for mapping and analysis than Choropleth Map 1? (2-3 sentences) 
+
+Choropleth Map 2 is more appropriate for mapping and analysis because it uses the Case Rate. This is important because otherwise the large cities will show that they have high amounts of COVID-19 cases simply because of their large population, this does not help the reader see where COVID-19 hit the hardest in North Carolina. Therefore the reader needs a map that will show where COVID-19 rates had a high ratio compared to the local population which is what Choropleth Map 2 provides.
+
+  
+******
+
+
+##### Question 5. Describe the nature of the *spatial pattern* found in Choropleth Map 2. (1-2 sentences) 
+
+Choropleth Map 2 shows that there tended to be more COVID-19 cases in zip codes in the Piedmont region, whereas the mountains have a lot less, this makes sense as the population in North Carolina is a lot denser in the Piedmont and COVID-19 transfers through contact. There was a lot of dark oranges and reds in the southeast portion of the state, some near Fayetteville but also more south along the border with South Carolina, showing that this area had a lot of COVID-19 cases compared to their population. 
+
+  
+******
+
+
+##### Question 6. Explain the difference between Choropleth Map 3 and Choropleth Map 2. Which is easier for you to interpret? (2-3 sentences) 
+
+Choropleth Map 3 uses the "quantile" style while Choropleth Map 2 uses the "jenks" style, this changes the gradient used to assign the case rates to a level. I find Choropleth Map 2 easier to interpret because Choropleth Map 3 gives the extreme such a large gap between 22.49 and 96.61 that so many zip codes fall into it, so it's hard to see which zip codes truly had extremely high COVID-19 Case Rates per 1,000 people.
+
+  
+******
