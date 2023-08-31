@@ -266,9 +266,9 @@ tm_shape(tr.bo_sf) +
 
 ### Interpretation
 
-Moran's I, 0.049, and the p-value, 0.00175, are both closer to 0 (rather than the Moran's I being closer to -1 or 1 and the p-value being closer to 0.5) so they both indicate that the data is random and that there is no consistent pattern of clustering or dispersing.
+Moran's I, 0.049, is closer to 1 than -1 so it shows very slight indication of clustering but it is barely above 0 so it indicates the data is random. And the p-value, 0.00175, is smaller than the alpha level of 0.05 which indicates that Moran's I is statistically significant. The data is more random and there is no consistent pattern of clustering or dispersing.
 
-The choropleth the LISA map show a cluster of a large amount of trees in the north of Greater London, while there is a lack of trees near the City of London. The cluster of low values at the City of London makes sense because it has less green space. Currently I do not know why there is a cluster of high values near Enfield or Waltham Forest (other than the name including Forest), but further research could be done to find out the reason behind this, perhaps these areas are more residential or have wealthier inhabitants.
+The choropleth LISA map show a cluster of a large amount of trees in the north of Greater London, while there is a lack of trees near the City of London. The cluster of low values at the City of London makes sense because it has less green space. Currently I do not know why there is a cluster of high values near Enfield or Waltham Forest (other than the name including Forest), but further research could be done to find out the reason behind this, perhaps these areas are more residential or have wealthier inhabitants.
 
 The primary limitation to this data that there is a lack of consistency among the data of tree locations provided. Many of the tree locations are from 2021, but some boroughs had not submitted updated numbers so they are from 2018 or 2015/2016.
 
