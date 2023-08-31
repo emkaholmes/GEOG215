@@ -1,0 +1,117 @@
+---
+title: "Assignment #4"
+author: "Emma Holmes"
+date: 'Updated on `r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+   html_document:
+     theme: spacelab
+     highlight: textmate
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 999)
+library(tidyverse)
+library(sf)
+library(tmap)
+library(knitr)
+library(kableExtra)
+library(here)
+```
+
+```{r readdata, include = FALSE}
+# Read NC state-level data
+nc.st.dat <- read_csv(here("Output/NC_State_COVID_POP_2020-09-23.csv"))
+
+# Read NC zip-level data (for mapping)
+nc.zip.dat <- read_csv(here("Output/NC_ZIPmapping_COVID_POP_2020-09-23.csv"))
+
+# Read NC zip spatial data layer (simplified for mapping)
+nc.zip.sp <- st_read(here("Output/NC_ZIP_2020_mapping.shp"))
+
+# Join/merge spatial and table data
+nc.zip.sp <- merge(nc.zip.sp, 
+                   nc.zip.dat, 
+                   by.x = "ZIP_CODE",
+                   by.y = "ZIPCODEmap",
+                   all.x = TRUE)
+```
+
+******
+
+### State-level table
+
+In this part of the document, we will use `kable` to print a nice table of the State-level results created in the file GEOG215-data-analysis.R. We won't show the code, just the table!
+
+```{r printtable, echo = FALSE, warning = FALSE}
+kable(nc.st.dat, 
+      digits = 3,
+      format.args = list(big.mark = ",",
+                         scientific = FALSE,
+                         drop0trailing = TRUE),
+      caption = "North Carolina COVID-19 Statistics") %>% 
+  kable_styling(bootstrap_options = c("striped", 
+                                      "hover", 
+                                      "condensed", 
+                                      "responsive"), 
+                full_width = F)
+```
+
+We can also use inline code to write statements such as: There have been `r format(nc.st.dat$Value[2], big.mark = ",")` lab confirmed COVID-19 cases in North Carolina, and, sadly, `r format(nc.st.dat$Value[3], big.mark = ",")` people have died.
+
+******
+
+### Ordered Bar Chart (top 20 Zip Codes, Cases)
+
+Now, we will use `ggplot` to create a nice graphic showing the name (and case count) of the 20 Zip Codes with the highest case counts.
+
+```{r barplot, echo = FALSE, warning = FALSE, fig.width = 7, fig.height = 4}
+## Get table information from sp data
+nc.zip.sp.t <- st_drop_geometry(nc.zip.sp)
+
+## Sort data by Cases (high to low)
+nc.zip.sp.t <- nc.zip.sp.t[order(nc.zip.sp.t$CASES, decreasing = TRUE), ]
+
+## Create subset with top 20
+nc.zip.20 <- as_tibble(nc.zip.sp.t[1:20,])
+
+## Create new field with for label
+nc.zip.20$ZIPLABEL <- paste0(nc.zip.20$PO_NAME, 
+                             " (", 
+                             nc.zip.20$ZIP_CODE, 
+                             ")")
+
+## Create ggplot
+ggplot(nc.zip.20,
+       aes(x = reorder(ZIPLABEL, CASES),
+           y = CASES)) + 
+  geom_bar(stat = "identity") + 
+  xlab("Zip Code") +
+  ylab("COVID-19 Cases") +
+  coord_flip() +
+  theme_minimal()
+```
+
+******
+
+### Choropleth Map
+
+Now, we will use `tmap` to create a interactive choropleth map. We won't show the code, but we will show the map!
+
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, fig.width = 9, fig.height = 5}
+## Put tmap in interactive mode
+tmap_mode("view")
+
+## Plot map
+tm_shape(nc.zip.sp) + 
+  tm_polygons("CASERATE", 
+              style = "jenks", 
+              palette = "YlOrRd",
+              lwd = 0.25,
+              border.col = "black",
+              border.alpha = 0.5,
+              title = "COVID-19 Case Rate<br>(per 1,000 people)") +
+  tm_basemap("CartoDB.PositronNoLabels") +
+  tm_view(set.view = 7)
+```

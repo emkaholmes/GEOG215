@@ -1,0 +1,781 @@
+OBJECTID,ZIP CODE,NAME,COVID-19 CASES,COVID-19 DEATHS
+1,27006,Advance,116,3
+2,27007,Ararat,31,0
+3,27009,Belews Creek,13,0
+4,27011,Boonville,75,0
+5,27012,Clemmons,413,11
+6,27013,Cleveland,92,3
+7,27014,Cooleemee,7,0
+8,27016,Danbury,20,0
+9,27017,Dobson,203,1
+10,27018,East Bend,116,2
+11,27019,Germanton,38,0
+12,27020,Hamptonville,137,2
+13,27021,King,156,1
+14,27022,Lawsonville,13,0
+15,27023,Lewisville,155,1
+16,27024,Lowgap,26,1
+17,27025,Madison,248,2
+18,27027,Mayodan,48,0
+19,27028,Mocksville,414,3
+20,27030,Mount Airy,629,11
+21,27040,Pfafftown,127,1
+22,27041,Pilot Mountain,83,0
+23,27042,Pine Hall,12,1
+24,27043,Pinnacle,85,1
+25,27045,Rural Hall,169,3
+26,27046,Sandy Ridge,16,0
+27,27047,Siloam,9,0
+28,27048,Stoneville,89,0
+29,27050,Tobaccoville,35,0
+30,27051,Walkertown,104,1
+31,27052,Walnut Cove,92,0
+32,27053,Westfield,21,0
+33,27054,Woodleaf,43,0
+34,27055,Yadkinville,309,2
+35,27101,Winston Salem,310,11
+36,27103,Winston Salem,607,14
+37,27104,Winston Salem,438,11
+38,27105,Winston Salem,1049,9
+39,27106,Winston Salem,842,7
+40,27107,Winston Salem,1194,14
+41,27127,Winston Salem,801,6
+42,27157,Winston Salem,NA,NA
+43,27203,Asheboro,737,19
+44,27205,Asheboro,645,10
+45,27207,Bear Creek,87,1
+46,27208,Bennett,38,0
+47,27209,Biscoe,321,17
+48,27212,Blanch,77,0
+49,27214,Browns Summit,128,1
+50,27215,Burlington,790,8
+51,27217,Burlington,1416,37
+52,27229,Candor,214,3
+53,27231,Cedar Grove,17,0
+54,27233,Climax,19,0
+55,27235,Colfax,59,0
+56,27239,Denton,103,3
+57,27242,Eagle Springs,41,0
+58,27243,Efland,65,1
+59,27244,Elon,194,2
+60,27248,Franklinville,61,2
+61,27249,Gibsonville,152,2
+62,27252,Goldston,12,1
+63,27253,Graham,869,4
+64,27258,Haw River,158,2
+65,27260,High Point,573,14
+66,27262,High Point,453,6
+67,27263,High Point,388,4
+68,27265,High Point,685,21
+69,27268,High Point,39,0
+70,27278,Hillsborough,317,1
+71,27281,Jackson Springs,52,0
+72,27282,Jamestown,207,3
+73,27283,Julian,37,1
+74,27284,Kernersville,764,8
+75,27288,Eden,322,3
+76,27291,Leasburg,4,0
+77,27292,Lexington,669,6
+78,27295,Lexington,549,16
+79,27298,Liberty,149,0
+80,27299,Linwood,86,0
+81,27301,Mc Leansville,107,2
+82,27302,Mebane,446,0
+83,27305,Milton,37,1
+84,27306,Mount Gilead,155,3
+85,27310,Oak Ridge,77,1
+86,27311,Pelham,20,0
+87,27312,Pittsboro,237,20
+88,27313,Pleasant Garden,125,16
+89,27314,Prospect Hill,7,0
+90,27315,Providence,17,0
+91,27316,Ramseur,195,11
+92,27317,Randleman,266,4
+93,27320,Reidsville,390,8
+94,27325,Robbins,245,2
+95,27326,Ruffin,36,2
+96,27330,Sanford,1014,9
+97,27332,Sanford,687,5
+98,27340,Saxapahaw,NA,NA
+99,27341,Seagrove,77,0
+100,27343,Semora,9,0
+101,27344,Siler City,899,22
+102,27349,Snow Camp,60,1
+103,27350,Sophia,78,0
+104,27355,Staley,54,0
+105,27356,Star,79,1
+106,27357,Stokesdale,84,1
+107,27358,Summerfield,186,1
+108,27360,Thomasville,950,9
+109,27370,Trinity,174,1
+110,27371,Troy,219,3
+111,27376,West End,140,5
+112,27377,Whitsett,126,0
+113,27379,Yanceyville,87,1
+114,27401,Greensboro,341,10
+115,27403,Greensboro,241,8
+116,27405,Greensboro,1013,17
+117,27406,Greensboro,952,41
+118,27407,Greensboro,886,13
+119,27408,Greensboro,213,0
+120,27409,Greensboro,252,2
+121,27410,Greensboro,546,7
+122,27411,Greensboro,1,0
+123,27412,Greensboro,2,0
+124,27455,Greensboro,325,9
+125,27498,Greensboro,NA,NA
+126,27501,Angier,364,2
+127,27502,Apex,429,3
+128,27503,Bahama,29,0
+129,27504,Benson,297,4
+130,27505,Broadway,146,5
+131,27507,Bullock,29,1
+132,27508,Bunn,50,0
+133,27509,Butner,670,28
+134,27510,Carrboro,245,4
+135,27511,Cary,446,3
+136,27513,Cary,416,2
+137,27514,Chapel Hill,695,19
+138,27516,Chapel Hill,730,12
+139,27517,Chapel Hill,335,4
+140,27518,Cary,192,1
+141,27519,Cary,471,4
+142,27520,Clayton,948,26
+143,27521,Coats,123,2
+144,27522,Creedmoor,254,1
+145,27523,Apex,139,0
+146,27524,Four Oaks,323,4
+147,27525,Franklinton,270,1
+148,27526,Fuquay Varina,614,13
+149,27527,Clayton,411,0
+150,27529,Garner,973,22
+151,27530,Goldsboro,714,22
+152,27531,Goldsboro,3,0
+153,27534,Goldsboro,638,12
+154,27536,Henderson,461,32
+155,27537,Henderson,484,11
+156,27539,Apex,286,2
+157,27540,Holly Springs,389,1
+158,27541,Hurdle Mills,39,0
+159,27542,Kenly,153,3
+160,27544,Kittrell,53,0
+161,27545,Knightdale,688,22
+162,27546,Lillington,464,27
+163,27549,Louisburg,553,27
+164,27551,Macon,20,1
+165,27553,Manson,27,0
+166,27556,Middleburg,7,0
+167,27557,Middlesex,171,1
+168,27559,Moncure,31,0
+169,27560,Morrisville,355,1
+170,27562,New Hill,29,0
+171,27563,Norlina,100,1
+172,27565,Oxford,620,24
+173,27569,Princeton,177,0
+174,27571,Rolesville,76,0
+175,27572,Rougemont,61,0
+176,27573,Roxboro,129,6
+177,27574,Roxboro,149,0
+178,27576,Selma,602,8
+179,27577,Smithfield,702,6
+180,27581,Stem,51,0
+181,27583,Timberlake,89,0
+182,27587,Wake Forest,922,31
+183,27589,Warrenton,144,4
+184,27591,Wendell,444,4
+185,27592,Willow Spring,252,1
+186,27596,Youngsville,222,1
+187,27597,Zebulon,427,5
+188,27599,Chapel Hill,NA,NA
+189,27601,Raleigh,159,2
+190,27603,Raleigh,1010,5
+191,27604,Raleigh,1176,20
+192,27605,Raleigh,100,3
+193,27606,Raleigh,811,2
+194,27607,Raleigh,609,3
+195,27608,Raleigh,158,1
+196,27609,Raleigh,688,9
+197,27610,Raleigh,2373,42
+198,27612,Raleigh,515,6
+199,27613,Raleigh,495,6
+200,27614,Raleigh,384,6
+201,27615,Raleigh,630,19
+202,27616,Raleigh,1143,6
+203,27617,Raleigh,226,1
+204,27701,Durham,655,6
+205,27703,Durham,1610,9
+206,27704,Durham,1523,18
+207,27705,Durham,1260,41
+208,27706,Durham,NA,NA
+209,27707,Durham,1117,5
+210,27708,Durham,6,0
+211,27709,Durham,NA,NA
+212,27710,Durham,NA,NA
+213,27711,Durham,NA,NA
+214,27712,Durham,401,21
+215,27713,Durham,783,4
+216,27801,Rocky Mount,476,13
+217,27803,Rocky Mount,405,7
+218,27804,Rocky Mount,694,19
+219,27805,Aulander,84,0
+220,27806,Aurora,19,0
+221,27807,Bailey,224,3
+222,27808,Bath,35,1
+223,27809,Battleboro,125,2
+224,27810,Belhaven,44,0
+225,27812,Bethel,54,0
+226,27813,Black Creek,4,0
+227,27814,Blounts Creek,19,0
+228,27816,Castalia,53,0
+229,27817,Chocowinity,123,0
+230,27818,Como,34,0
+231,27820,Conway,41,2
+232,27821,Edward,NA,NA
+233,27822,Elm City,177,3
+234,27823,Enfield,155,1
+235,27824,Engelhard,23,0
+236,27826,Fairfield,33,2
+237,27827,Falkland,6,0
+238,27828,Farmville,138,1
+239,27829,Fountain,24,1
+240,27830,Fremont,80,1
+241,27831,Garysburg,71,1
+242,27832,Gaston,68,0
+243,27834,Greenville,1403,10
+244,27837,Grimesland,99,1
+245,27839,Halifax,40,0
+246,27840,Hamilton,22,2
+247,27841,Hassell,NA,NA
+248,27842,Henrico,13,0
+249,27843,Hobgood,22,0
+250,27844,Hollister,73,0
+251,27845,Jackson,19,0
+252,27846,Jamesville,48,1
+253,27847,Kelford,21,0
+254,27849,Lewiston Woodville,32,0
+255,27850,Littleton,58,0
+256,27851,Lucama,124,0
+257,27852,Macclesfield,49,0
+258,27853,Margarettsville,10,0
+259,27855,Murfreesboro,131,1
+260,27856,Nashville,344,4
+261,27857,Oak City,42,1
+262,27858,Greenville,1712,7
+263,27860,Pantego,45,1
+264,27862,Pendleton,9,0
+265,27863,Pikeville,183,1
+266,27864,Pinetops,106,2
+267,27865,Pinetown,22,1
+268,27866,Pleasant Hill,21,1
+269,27869,Rich Square,82,11
+270,27870,Roanoke Rapids,460,14
+271,27871,Robersonville,77,3
+272,27872,Roxobel,7,0
+273,27874,Scotland Neck,76,1
+274,27875,Scranton,7,0
+275,27876,Seaboard,27,1
+276,27880,Sims,86,0
+277,27881,Speed,NA,NA
+278,27882,Spring Hope,261,3
+279,27883,Stantonsburg,80,1
+280,27884,Stokes,24,0
+281,27885,Swanquarter,55,3
+282,27886,Tarboro,555,26
+283,27888,Walstonburg,72,0
+284,27889,Washington,598,14
+285,27890,Weldon,48,2
+286,27891,Whitakers,84,5
+287,27892,Williamston,267,4
+288,27893,Wilson,1176,26
+289,27896,Wilson,399,13
+290,27897,Woodland,52,1
+291,27909,Elizabeth City,654,30
+292,27910,Ahoskie,459,26
+293,27915,Avon,10,0
+294,27916,Aydlett,2,0
+295,27917,Barco,4,0
+296,27919,Belvidere,15,1
+297,27920,Buxton,28,0
+298,27921,Camden,51,3
+299,27922,Cofield,27,0
+300,27923,Coinjock,2,0
+301,27924,Colerain,80,1
+302,27925,Columbia,112,2
+303,27926,Corapeake,14,0
+304,27927,Corolla,5,0
+305,27928,Creswell,48,1
+306,27929,Currituck,8,0
+307,27932,Edenton,253,3
+308,27935,Eure,18,2
+309,27936,Frisco,10,1
+310,27937,Gates,63,1
+311,27938,Gatesville,15,0
+312,27939,Grandy,13,0
+313,27941,Harbinger,5,0
+314,27942,Harrellsville,22,0
+315,27943,Hatteras,8,0
+316,27944,Hertford,150,1
+317,27946,Hobbsville,16,0
+318,27947,Jarvisburg,6,0
+319,27948,Kill Devil Hills,98,0
+320,27949,Kitty Hawk,40,0
+321,27950,Knotts Island,7,0
+322,27953,Manns Harbor,6,0
+323,27954,Manteo,42,0
+324,27956,Maple,NA,NA
+325,27957,Merry Hill,36,1
+326,27958,Moyock,106,1
+327,27959,Nags Head,19,1
+328,27960,Ocracoke,4,0
+329,27962,Plymouth,85,3
+330,27964,Point Harbor,2,0
+331,27965,Poplar Branch,0,0
+332,27966,Powells Point,6,0
+333,27968,Rodanthe,5,0
+334,27970,Roper,67,4
+335,27972,Salvo,NA,NA
+336,27973,Shawboro,12,0
+337,27974,Shiloh,8,0
+338,27976,South Mills,45,0
+339,27978,Stumpy Point,NA,NA
+340,27979,Sunbury,13,0
+341,27980,Tyner,71,0
+342,27981,Wanchese,7,0
+343,27982,Waves,NA,NA
+344,27983,Windsor,271,4
+345,27986,Winton,53,2
+346,28001,Albemarle,862,43
+347,28006,Alexis,19,0
+348,28012,Belmont,520,4
+349,28016,Bessemer City,233,3
+350,28018,Bostic,58,0
+351,28020,Casar,33,0
+352,28021,Cherryville,283,10
+353,28023,China Grove,250,1
+354,28025,Concord,1053,16
+355,28027,Concord,1342,21
+356,28031,Cornelius,508,16
+357,28032,Cramerton,68,0
+358,28033,Crouse,65,1
+359,28034,Dallas,399,10
+360,28036,Davidson,292,5
+361,28037,Denver,332,1
+362,28039,East Spencer,14,1
+363,28040,Ellenboro,102,2
+364,28043,Forest City,370,9
+365,28052,Gastonia,1014,20
+366,28054,Gastonia,1000,16
+367,28056,Gastonia,665,7
+368,28071,Gold Hill,61,2
+369,28073,Grover,103,1
+370,28075,Harrisburg,280,6
+371,28077,High Shoals,5,0
+372,28078,Huntersville,912,12
+373,28079,Indian Trail,579,10
+374,28080,Iron Station,93,2
+375,28081,Kannapolis,530,5
+376,28083,Kannapolis,523,9
+377,28086,Kings Mountain,614,22
+378,28088,Landis,56,0
+379,28090,Lawndale,111,3
+380,28091,Lilesville,42,0
+381,28092,Lincolnton,753,7
+382,28097,Locust,108,0
+383,28098,Lowell,56,1
+384,28101,Mc Adenville,7,0
+385,28103,Marshville,235,1
+386,28104,Matthews,491,6
+387,28105,Matthews,849,39
+388,28107,Midland,139,3
+389,28110,Monroe,1298,24
+390,28112,Monroe,817,10
+391,28114,Mooresboro,136,2
+392,28115,Mooresville,459,3
+393,28117,Mooresville,610,2
+394,28119,Morven,70,1
+395,28120,Mount Holly,401,5
+396,28124,Mount Pleasant,100,3
+397,28125,Mount Ulla,32,0
+398,28127,New London,448,3
+399,28128,Norwood,144,3
+400,28129,Oakboro,107,2
+401,28133,Peachland,48,0
+402,28134,Pineville,288,2
+403,28135,Polkton,104,0
+404,28137,Richfield,76,0
+405,28138,Rockwell,162,4
+406,28139,Rutherfordton,344,14
+407,28144,Salisbury,707,31
+408,28146,Salisbury,538,6
+409,28147,Salisbury,846,34
+410,28150,Shelby,647,23
+411,28152,Shelby,486,5
+412,28159,Spencer,72,0
+413,28160,Spindale,91,2
+414,28163,Stanfield,66,0
+415,28164,Stanley,213,3
+416,28166,Troutman,110,1
+417,28167,Union Mills,31,1
+418,28168,Vale,195,3
+419,28170,Wadesboro,267,3
+420,28173,Waxhaw,948,5
+421,28174,Wingate,260,2
+422,28202,Charlotte,427,0
+423,28203,Charlotte,474,2
+424,28204,Charlotte,267,3
+425,28205,Charlotte,1590,28
+426,28206,Charlotte,356,2
+427,28207,Charlotte,205,1
+428,28208,Charlotte,1217,11
+429,28209,Charlotte,570,4
+430,28210,Charlotte,1352,18
+431,28211,Charlotte,637,26
+432,28212,Charlotte,1775,21
+433,28213,Charlotte,1541,17
+434,28214,Charlotte,1124,6
+435,28215,Charlotte,2111,19
+436,28216,Charlotte,1432,15
+437,28217,Charlotte,1480,6
+438,28223,Charlotte,3,0
+439,28226,Charlotte,747,11
+440,28227,Charlotte,1597,16
+441,28262,Charlotte,981,13
+442,28269,Charlotte,1697,19
+443,28270,Charlotte,419,5
+444,28273,Charlotte,1281,18
+445,28277,Charlotte,972,9
+446,28278,Charlotte,587,2
+447,28301,Fayetteville,457,27
+448,28303,Fayetteville,377,3
+449,28304,Fayetteville,614,11
+450,28305,Fayetteville,84,2
+451,28306,Fayetteville,639,5
+452,28307,Fort Bragg,103,0
+453,28308,Pope Army Airfield,0,0
+454,28310,Fort Bragg,217,0
+455,28311,Fayetteville,565,3
+456,28312,Fayetteville,276,3
+457,28314,Fayetteville,840,9
+458,28315,Aberdeen,249,3
+459,28318,Autryville,47,1
+460,28320,Bladenboro,115,1
+461,28323,Bunnlevel,61,0
+462,28326,Cameron,256,2
+463,28327,Carthage,207,2
+464,28328,Clinton,926,16
+465,28333,Dudley,392,9
+466,28334,Dunn,568,4
+467,28337,Elizabethtown,245,5
+468,28338,Ellerbe,97,2
+469,28339,Erwin,135,3
+470,28340,Fairmont,408,17
+471,28341,Faison,199,1
+472,28343,Gibson,23,0
+473,28344,Godwin,95,1
+474,28345,Hamlet,247,5
+475,28347,Hoffman,59,0
+476,28348,Hope Mills,589,4
+477,28349,Kenansville,155,12
+478,28350,Lakeview,6,0
+479,28351,Laurel Hill,80,0
+480,28352,Laurinburg,772,9
+481,28356,Linden,66,3
+482,28357,Lumber Bridge,61,1
+483,28358,Lumberton,1188,22
+484,28360,Lumberton,456,5
+485,28363,Marston,25,1
+486,28364,Maxton,378,5
+487,28365,Mount Olive,592,19
+488,28366,Newton Grove,139,2
+489,28369,Orrum,48,1
+490,28371,Parkton,117,3
+491,28372,Pembroke,436,4
+492,28373,Pinebluff,40,1
+493,28374,Pinehurst,240,8
+494,28375,Proctorville,NA,NA
+495,28376,Raeford,842,13
+496,28377,Red Springs,443,10
+497,28379,Rockingham,497,8
+498,28382,Roseboro,104,0
+499,28383,Rowland,222,2
+500,28384,Saint Pauls,446,3
+501,28385,Salemburg,43,0
+502,28386,Shannon,297,6
+503,28387,Southern Pines,199,2
+504,28390,Spring Lake,284,6
+505,28391,Stedman,65,0
+506,28392,Tar Heel,53,1
+507,28393,Turkey,58,1
+508,28394,Vass,57,1
+509,28395,Wade,37,0
+510,28396,Wagram,60,2
+511,28398,Warsaw,324,9
+512,28399,White Oak,66,1
+513,28401,Wilmington,453,8
+514,28403,Wilmington,968,3
+515,28405,Wilmington,579,3
+516,28409,Wilmington,449,5
+517,28411,Wilmington,514,5
+518,28412,Wilmington,557,4
+519,28420,Ash,98,1
+520,28421,Atkinson,16,0
+521,28422,Bolivia,94,7
+522,28423,Bolton,45,1
+523,28425,Burgaw,196,3
+524,28428,Carolina Beach,106,0
+525,28429,Castle Hayne,93,0
+526,28430,Cerro Gordo,38,1
+527,28431,Chadbourn,174,7
+528,28432,Clarendon,51,2
+529,28433,Clarkton,77,0
+530,28434,Council,16,0
+531,28435,Currie,29,0
+532,28436,Delco,35,0
+533,28438,Evergreen,29,0
+534,28439,Fair Bluff,46,4
+535,28441,Garland,76,2
+536,28442,Hallsboro,45,1
+537,28443,Hampstead,292,0
+538,28444,Harrells,94,0
+539,28445,Holly Ridge,88,1
+540,28447,Ivanhoe,76,0
+541,28448,Kelly,19,1
+542,28449,Kure Beach,21,0
+543,28450,Lake Waccamaw,63,5
+544,28451,Leland,441,3
+545,28452,Longwood,19,0
+546,28453,Magnolia,276,6
+547,28454,Maple Hill,20,0
+548,28455,Nakina,48,2
+549,28456,Riegelwood,89,1
+550,28457,Rocky Point,215,2
+551,28458,Rose Hill,279,6
+552,28460,Sneads Ferry,139,1
+553,28461,Southport,124,2
+554,28462,Supply,161,5
+555,28463,Tabor City,275,17
+556,28464,Teachey,100,2
+557,28465,Oak Island,53,0
+558,28466,Wallace,332,7
+559,28467,Calabash,139,3
+560,28468,Sunset Beach,54,0
+561,28469,Ocean Isle Beach,98,2
+562,28470,Shallotte,195,2
+563,28472,Whiteville,415,14
+564,28478,Willard,102,0
+565,28479,Winnabow,70,1
+566,28480,Wrightsville Beach,85,0
+567,28501,Kinston,247,5
+568,28504,Kinston,382,18
+569,28508,Albertson,108,2
+570,28510,Arapahoe,9,0
+571,28511,Atlantic,2,0
+572,28512,Atlantic Beach,19,1
+573,28513,Ayden,198,1
+574,28515,Bayboro,139,2
+575,28516,Beaufort,85,3
+576,28518,Beulaville,156,2
+577,28519,Bridgeton,NA,NA
+578,28520,Cedar Island,NA,NA
+579,28521,Chinquapin,40,2
+580,28523,Cove City,32,2
+581,28524,Davis,NA,NA
+582,28525,Deep Run,37,0
+583,28526,Dover,28,0
+584,28527,Ernul,6,0
+585,28528,Gloucester,0,0
+586,28529,Grantsboro,49,0
+587,28530,Grifton,132,1
+588,28531,Harkers Island,7,0
+589,28532,Havelock,170,2
+590,28533,Cherry Point,NA,NA
+591,28537,Hobucken,NA,NA
+592,28538,Hookerton,60,0
+593,28539,Hubert,116,1
+594,28540,Jacksonville,448,7
+595,28542,Camp Lejeune,88,0
+596,28543,Tarawa Terrace,38,2
+597,28544,Midway Park,52,2
+598,28545,Mccutcheon Field,14,0
+599,28546,Jacksonville,431,4
+600,28547,Camp Lejeune,206,0
+601,28551,La Grange,290,6
+602,28552,Lowland,NA,NA
+603,28553,Marshallberg,3,0
+604,28555,Maysville,41,0
+605,28556,Merritt,3,0
+606,28557,Morehead City,159,0
+607,28560,New Bern,407,18
+608,28561,New Bern,NA,NA
+609,28562,New Bern,463,10
+610,28570,Newport,246,1
+611,28571,Oriental,16,0
+612,28572,Pink Hill,107,1
+613,28573,Pollocksville,71,9
+614,28574,Richlands,193,4
+615,28577,Sealevel,5,0
+616,28578,Seven Springs,243,3
+617,28579,Smyrna,7,0
+618,28580,Snow Hill,280,5
+619,28581,Stacy,NA,NA
+620,28582,Stella,8,0
+621,28583,Stonewall,NA,NA
+622,28584,Swansboro,75,0
+623,28585,Trenton,43,2
+624,28586,Vanceboro,245,1
+625,28587,Vandemere,NA,NA
+626,28590,Winterville,528,6
+627,28594,Emerald Isle,33,0
+628,28601,Hickory,1000,15
+629,28602,Hickory,621,20
+630,28604,Banner Elk,44,0
+631,28605,Blowing Rock,25,0
+632,28606,Boomer,30,0
+633,28607,Boone,409,1
+634,28609,Catawba,90,0
+635,28610,Claremont,155,1
+636,28611,Collettsville,16,0
+637,28612,Connelly Springs,208,8
+638,28613,Conover,489,8
+639,28615,Creston,23,0
+640,28617,Crumpler,29,0
+641,28618,Deep Gap,24,0
+642,28621,Elkin,252,8
+643,28622,Elk Park,28,0
+644,28623,Ennice,36,0
+645,28624,Ferguson,34,1
+646,28625,Statesville,669,14
+647,28626,Fleetwood,12,0
+648,28627,Glade Valley,8,0
+649,28629,Glendale Springs,NA,NA
+650,28630,Granite Falls,417,7
+651,28631,Grassy Creek,21,0
+652,28634,Harmony,86,0
+653,28635,Hays,47,3
+654,28636,Hiddenite,79,4
+655,28637,Hildebran,35,0
+656,28638,Hudson,226,0
+657,28640,Jefferson,27,0
+658,28642,Jonesville,105,1
+659,28643,Lansing,21,0
+660,28644,Laurel Springs,8,0
+661,28645,Lenoir,860,12
+662,28646,Linville,14,0
+663,28649,Mc Grady,11,0
+664,28650,Maiden,226,2
+665,28651,Millers Creek,90,2
+666,28654,Moravian Falls,71,2
+667,28655,Morganton,1434,23
+668,28657,Newland,59,0
+669,28658,Newton,511,7
+670,28659,North Wilkesboro,400,6
+671,28660,Olin,37,0
+672,28663,Piney Creek,3,0
+673,28665,Purlear,30,1
+674,28667,Rhodhiss,9,0
+675,28668,Roaring Gap,NA,NA
+676,28669,Roaring River,35,0
+677,28670,Ronda,37,2
+678,28672,Scottville,NA,NA
+679,28673,Sherrills Ford,69,0
+680,28675,Sparta,163,0
+681,28676,State Road,46,0
+682,28677,Statesville,641,7
+683,28678,Stony Point,51,0
+684,28679,Sugar Grove,12,0
+685,28681,Taylorsville,331,2
+686,28682,Terrell,6,0
+687,28683,Thurmond,20,0
+688,28684,Todd,8,1
+689,28685,Traphill,18,0
+690,28689,Union Grove,25,0
+691,28690,Valdese,142,3
+692,28692,Vilas,49,0
+693,28693,Warrensville,15,0
+694,28694,West Jefferson,80,0
+695,28697,Wilkesboro,302,16
+696,28698,Zionville,32,0
+697,28701,Alexander,21,0
+698,28702,Almond,3,0
+699,28704,Arden,329,0
+700,28705,Bakersville,30,0
+701,28708,Balsam Grove,2,0
+702,28709,Barnardsville,5,0
+703,28711,Black Mountain,102,9
+704,28712,Brevard,215,6
+705,28713,Bryson City,50,1
+706,28714,Burnsville,98,0
+707,28715,Candler,287,3
+708,28716,Canton,260,28
+709,28717,Cashiers,49,1
+710,28718,Cedar Mountain,4,0
+711,28719,Cherokee,105,3
+712,28720,Chimney Rock,NA,NA
+713,28721,Clyde,86,0
+714,28722,Columbus,85,1
+715,28723,Cullowhee,137,0
+716,28725,Dillsboro,NA,NA
+717,28726,East Flat Rock,92,2
+718,28729,Etowah,21,0
+719,28730,Fairview,58,1
+720,28731,Flat Rock,220,7
+721,28732,Fletcher,154,0
+722,28733,Fontana Dam,NA,NA
+723,28734,Franklin,459,1
+724,28735,Gerton,NA,NA
+725,28736,Glenville,13,0
+726,28739,Hendersonville,184,3
+727,28740,Green Mountain,13,0
+728,28741,Highlands,75,0
+729,28742,Horse Shoe,25,0
+730,28743,Hot Springs,11,0
+731,28745,Lake Junaluska,9,0
+732,28746,Lake Lure,40,0
+733,28747,Lake Toxaway,8,1
+734,28748,Leicester,105,4
+735,28749,Little Switzerland,NA,NA
+736,28751,Maggie Valley,29,0
+737,28752,Marion,639,16
+738,28753,Marshall,44,0
+739,28754,Mars Hill,41,1
+740,28756,Mill Spring,58,0
+741,28757,Montreat,NA,NA
+742,28759,Mills River,87,1
+743,28761,Nebo,159,8
+744,28762,Old Fort,89,1
+745,28763,Otto,28,0
+746,28766,Penrose,4,0
+747,28768,Pisgah Forest,76,0
+748,28771,Robbinsville,128,2
+749,28772,Rosman,2,0
+750,28773,Saluda,58,4
+751,28774,Sapphire,18,0
+752,28775,Scaly Mountain,5,1
+753,28777,Spruce Pine,254,3
+754,28778,Swannanoa,116,1
+755,28779,Sylva,186,2
+756,28781,Topton,6,0
+757,28782,Tryon,68,3
+758,28783,Tuckasegee,32,2
+759,28785,Waynesville,46,0
+760,28786,Waynesville,149,1
+761,28787,Weaverville,196,0
+762,28789,Whittier,52,1
+763,28790,Zirconia,34,0
+764,28791,Hendersonville,233,10
+765,28792,Hendersonville,824,41
+766,28801,Asheville,179,4
+767,28803,Asheville,381,8
+768,28804,Asheville,152,6
+769,28805,Asheville,193,11
+770,28806,Asheville,701,30
+771,28901,Andrews,153,4
+772,28902,Brasstown,21,0
+773,28904,Hayesville,97,2
+774,28905,Marble,49,0
+775,28906,Murphy,353,6
+776,28909,Warne,8,0
+777,27969,Roduco,NA,NA
+778,28253,Charlotte,NA,NA
+779,28608,Boone,NA,NA
+780,27533,NA,NA,NA

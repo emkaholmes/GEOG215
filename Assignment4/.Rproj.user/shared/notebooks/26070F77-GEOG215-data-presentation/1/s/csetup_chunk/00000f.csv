@@ -1,0 +1,23 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","options(scipen = 999)"
+"0","library(tidyverse)"
+"0","library(sf)"
+"0","library(tmap)"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"0","library(knitr)"
+"0","library(kableExtra)"
+"2","
+Attaching package: ‘kableExtra’
+
+"
+"2","The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+"
+"0","library(here)"
+"2","here() starts at C:/Users/Emma/Downloads/Assignment4
+"
